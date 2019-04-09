@@ -1,0 +1,11 @@
+@import "libs/vars";
+@import "libs/functions";
+
+// Components
+@import "components/text-input";
+
+
+
+body {
+  background-color: palette(bg);
+}
