@@ -1,19 +1,17 @@
 {
-  "name": "@commons/ecosystem",
-  "version": "0.1.0",
+  "name": "@wip-abramson/ecosystem",
+  "version": "0.3.15",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "start": "react-scripts start",
     "build-examples": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "copy-package-json": "cpx './package-dist.json' temp && renamer --find 'package-dist.json' --replace 'package.json' ./temp/*",
-    "overwrite-dist": "cpx 'temp/**/*.*' dist --clean",
-    "build": "rimraf temp && NODE_ENV=production babel src/lib --out-dir temp --copy-files --ignore __tests__,spec.js,test.js,__snapshots__ && npm run copy-package-json && npm run overwrite-dist"
+    "overwrite-lib": "cpx 'temp/**/*.*' lib --clean",
+    "build-lib": "rimraf temp && NODE_ENV=production babel src/lib --out-dir temp --copy-files --ignore __tests__,spec.js,test.js,__snapshots__ && cpx package.json ./temp/ && npm run overwrite-lib",
+    "build": "rimraf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__ && cpx package.json ./dist/",
+    "publish-dist": "yarn build && npm publish dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
@@ -25,8 +23,12 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^2.1.8",
-    "renamer": "^1.1.1",
     "rimraf": "^2.6.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "node-sass": "^4.11.0"
   },
   "browserslist": [
     ">0.2%",

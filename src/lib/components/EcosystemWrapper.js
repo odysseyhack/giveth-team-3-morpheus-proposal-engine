@@ -2,13 +2,17 @@
  * Created by will on 09/04/19.
  */
 import React from 'react';
+import EcosytemHeader from './EcosystemHeader';
+import {UserProvider} from '../context/User';
 
 const EcosystemWrapper = ({children}) => {
   return (
+    <UserProvider>
     <div>
-      <h1>Ecosystem Wrapper Header</h1>
+      <EcosytemHeader/>
       {children}
     </div>
+    </UserProvider>
   )
 };
 

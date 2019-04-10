@@ -1,0 +1,21 @@
+button {
+  &.eco {
+    padding: 10px 20px;
+    box-shadow: 1px 1px 1px 1px darkcyan;
+    border: none;
+    border-radius: 5px;
+    &.primary {
+      color: palette(secondary);
+      background-color: palette(primary);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+  }
+}

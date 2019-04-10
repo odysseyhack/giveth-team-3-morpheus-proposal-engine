@@ -1,10 +1,21 @@
 @import "libs/vars";
 @import "libs/functions";
 
+
+//Layout
+@import "layout/header";
+
 // Components
 @import "components/text-input";
+@import "components/header";
+@import "components/button";
 
 
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
 
 body {
   background-color: palette(bg);
