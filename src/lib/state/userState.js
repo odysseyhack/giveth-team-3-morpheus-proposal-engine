@@ -18,12 +18,13 @@ export function reducer(state, action) {
         user: action.user,
       }
     case userActions.spend:
-      return {
-        ...state ,
+
+      return state.user ? {
+        ...state,
         user: {
           name: state.user.name,
           totalBalance: state.user.totalBalance - action.amount
         }
-      }
-  }
+      } : state;
+}
 }

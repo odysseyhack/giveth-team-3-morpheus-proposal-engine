@@ -9,6 +9,12 @@ button {
       background-color: palette(primary);
     }
 
+    &.secondary {
+      color: palette(primary);
+      background-color: palette(secondary);
+    }
+
+
     &:focus {
       outline: none;
     }
