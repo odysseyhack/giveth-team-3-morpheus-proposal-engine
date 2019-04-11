@@ -3,15 +3,18 @@
  */
 import React from 'react';
 import EcosytemHeader from './EcosystemHeader';
-import {UserProvider} from '../context/User';
+import { UserProvider } from '../context/User';
+import { AugmentedCurveProvider } from '../context/AugmentedCurve';
 
-const EcosystemWrapper = ({children}) => {
+const EcosystemWrapper = ({ children }) => {
   return (
     <UserProvider>
-    <div>
-      <EcosytemHeader/>
-      {children}
-    </div>
+      <AugmentedCurveProvider>
+        <div>
+          <EcosytemHeader/>
+          {children}
+        </div>
+      </AugmentedCurveProvider>
     </UserProvider>
   )
 };

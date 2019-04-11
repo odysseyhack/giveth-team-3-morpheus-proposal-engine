@@ -5,10 +5,12 @@ import SecondaryButton from "./components/SecondaryButton";
 import PrimaryButton from "./components/PrimaryButton";
 import UserContext, {UserProvider,} from "./context/User";
 import {userActions} from "./state/userState"
+import AugmentedCurveContext, {AugmentedCurveProvider} from './context/AugmentedCurve'
+import {curveActions} from './state/augmentedCurveState'
 export { EcosystemWrapper }
 export { EcosystemHeader }
 export { EcosystemDaiAction }
-export { UserContext }
-export {UserProvider}
-export {userActions}
+export { UserContext, UserProvider, userActions }
+export { AugmentedCurveContext, AugmentedCurveProvider, curveActions}
 export {PrimaryButton, SecondaryButton}
+
