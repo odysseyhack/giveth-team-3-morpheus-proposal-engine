@@ -3,6 +3,8 @@
  */
 import React from 'react';
 import {userActions} from '../state/userState';
+import PrimaryButton from './PrimaryButton';
+import PropTypes from 'prop-types';
 
 import UserContext from '../context/User';
 
@@ -12,10 +14,16 @@ const EcosystemDaiAction = ({buttonName, actionText}) => {
 
   return (
     <div className="eco-dai-action">
-      <button className="eco primary" onClick={spendFunds}>{buttonName}</button>
+      <PrimaryButton name={buttonName} onClick={spendFunds}/>
       <p>{actionText}</p>
     </div>
   );
+};
+
+
+EcosystemDaiAction.propTypes = {
+  // buttonName:
 }
+
 
 export default EcosystemDaiAction;

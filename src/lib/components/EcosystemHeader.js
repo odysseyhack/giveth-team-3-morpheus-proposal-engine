@@ -20,7 +20,6 @@ const EcosystemHeader = () => {
       </div>
       <div className="eco-header-content">
 
-
         <h3>CAMPAIGN</h3>
 
 
