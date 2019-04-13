@@ -1,11 +1,12 @@
 import React from 'react'
 import giveth from '../assets/images/giveth-logo.svg'
 import profile from '../assets/images/profile.png'
+import { changeState } from '../stores/navigation'
 
 const EcosystemNavbar = () => {
   return (
     <div className="eco-main-navbar">
-      <div className="giveth-logo">
+      <div className="giveth-logo" onClick={() => changeState('commons')}>
         <img src={giveth} />
       </div>
       <div className="commons-dropdown">

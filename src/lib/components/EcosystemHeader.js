@@ -1,7 +1,7 @@
 import React from 'react'
-import EcosystemDaiAction from './EcosystemDaiAction'
 import EcosystemNavbar from './EcosystemNavbar'
 import Givethers from './Givethers'
+import PrimaryButton from './PrimaryButton'
 
 const EcosystemHeader = ({ title, subtitle, description, image }) => {
   return (
@@ -17,14 +17,11 @@ const EcosystemHeader = ({ title, subtitle, description, image }) => {
           <div className="description">
             <p>{description}</p>
           </div>
-          <div className="row">
-            <EcosystemDaiAction
-              buttonName="Donate xDAI"
-              actionText="1510 xDAI donated"
-              showDAI
-            />
+          <div className="donate-field">
+            <PrimaryButton name="Donate xDAI" showDai />
             <Givethers count={488} />
           </div>
+          <p className="how-much">1510 xDAI donated</p>
         </div>
         {/* <div className="eco-nav-bar">
           <button selected={true}>ABOUT CAMPAIGN</button>

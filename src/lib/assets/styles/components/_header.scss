@@ -1,11 +1,19 @@
 .eco-header {
   background-size: cover;
   color: white;
-  .login {
-    width: 200px;
-    margin: 30px;
-    float: right;
-    justify-self: flex-end;
+
+  .donate-field {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    & > button {
+      margin-right: 2rem;
+    }
+  }
+
+  .how-much {
+    font-size: 14px;
+    opacity: 0.8;
   }
 
   .eco-header-content {
