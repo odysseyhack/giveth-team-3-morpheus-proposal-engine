@@ -48,11 +48,27 @@ export class MilestoneInfo extends React.Component {
       <div className="milestone-info">
         <div className="column">
           <h2>Description & Updates</h2>
-          <div>User</div>
-          <div>Description</div>
-          <div>Created</div>
-          <div>Nomination initiated</div>
-          <div>Nomination Success</div>
+          <div>
+            <div className="user-container">
+              <div className="pic"></div>
+              <div>Anonymous user</div>
+            </div>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis lorem sapien, at rutrum orci viverra non. Donec vitae odio suscipit, suscipit eros at, auctor justo. Sed sit amet magna non elit hendrerit pharetra. Nullam imperdiet ultrices hendrerit. Nullam tempor, est sed rhoncus feugiat, augue lacus sodales tortor, suscipit
+            </div>
+          </div>
+          <div>
+            <h3>Milestone proposed</h3>
+            <div>20 days ago</div>
+          </div>
+          <div>
+            <h3>Milestone nomination initiated</h3>
+            <div>10 min ago</div>
+          </div>
+          <div>
+            <h3>Milestone nomination success</h3>
+            <div>Waiting...</div>
+          </div>
         </div>
         <div className="column column-right">
           <h2>Details</h2>
