@@ -1,15 +1,16 @@
 import React from 'react'
 import headerImage from '../assets/images/campaign-header.jpg'
 import '../assets/styles/main.scss'
-import { EcosystemHeader } from '../index'
+import { MilestoneHeader, MilestoneInfo } from '../components/Milestone'
 
 export default () => (
   <div>
-    <EcosystemHeader
-      title="Plant 100 trees"
-      subtitle="CAMPAIGN"
-      description="This is a description... Trying to make it long hello there!"
-      image={headerImage}
-    />
+    <MilestoneHeader />
+    <div className="milestone-body">
+      <MilestoneInfo />
+      <div>
+      donations
+      </div>
+    </div>
   </div>
 )
