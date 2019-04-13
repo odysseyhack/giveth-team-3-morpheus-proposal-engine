@@ -1,18 +1,20 @@
 /**
  * Created by will on 10/04/19.
  */
-import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import React from 'react'
+import dai from '../assets/images/dai.png'
 
-const PrimaryButton = ({name, onClick}) => (
+const PrimaryButton = ({ name, onClick }) => (
   <button className="eco primary" onClick={onClick}>
+    <img src={dai} />
     {name}
   </button>
-);
+)
 
 PrimaryButton.propTypes = {
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 }
 
-export default PrimaryButton;
+export default PrimaryButton

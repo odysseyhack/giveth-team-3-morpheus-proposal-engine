@@ -1,29 +1,20 @@
 /**
  * Created by will on 10/04/19.
  */
-import React from 'react';
-import {userActions} from '../state/userState';
-import PrimaryButton from './PrimaryButton';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PrimaryButton from './PrimaryButton'
 
-import UserContext from '../context/User';
-
-const EcosystemDaiAction = ({buttonName, actionText}) => {
-  const {state, dispatch} = React.useContext(UserContext);
-  const spendFunds = () => dispatch({type: userActions.spend, amount: 5000});
-
+const EcosystemDaiAction = ({ buttonName, actionText }) => {
   return (
     <div className="eco-dai-action">
-      <PrimaryButton name={buttonName} onClick={spendFunds}/>
+      <PrimaryButton name={buttonName} />
       <p>{actionText}</p>
     </div>
-  );
-};
-
+  )
+}
 
 EcosystemDaiAction.propTypes = {
   // buttonName:
 }
 
-
-export default EcosystemDaiAction;
+export default EcosystemDaiAction
