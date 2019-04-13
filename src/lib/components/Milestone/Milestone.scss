@@ -51,15 +51,16 @@
 
 .milestone-body {
   padding: 47px 172px;
+  color: #3A6467;
 }
 
 .milestone-info {
-  color: #3a6467;
   display: flex;
   background: #ffffff;
   border: 1px solid #e3e3e3;
   box-sizing: border-box;
   border-radius: 4px;
+  margin-bottom: 47px;
 
   .column > *:not(:last-child) {
     &::after {
@@ -108,5 +109,26 @@
 
   .little-info {
     font-size: 10px;
+  }
+}
+
+.milestone-donations {
+  .table {
+    display: table;
+    width: 100%;
+
+    > div:first-child {
+      display: table-row;
+      font-weight: bold;
+      border-bottom: 1px solid black;
+    }
+
+    .row {
+      display: table-row;
+    }
+
+    .cell {
+      display: table-cell;
+    }
   }
 }
