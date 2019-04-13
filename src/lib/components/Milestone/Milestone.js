@@ -49,6 +49,7 @@ export class MilestoneInfo extends React.Component {
         <div className="column">
           <h2>Description & Updates</h2>
           <div>
+            <h3>Creator</h3>
             <div className="user-container">
               <div className="pic"></div>
               <div>Anonymous user</div>
@@ -70,12 +71,38 @@ export class MilestoneInfo extends React.Component {
             <div>Waiting...</div>
           </div>
         </div>
+
         <div className="column column-right">
           <h2>Details</h2>
-          <div>Reviewer</div>
-          <div>Fund</div>
-          <div>Progress</div>
-          <div>Milestone date</div>
+          <div>
+            <h3>Reviewer</h3>
+            <div className="user-container">
+              <div className="pic"></div>
+              <div>Griff Green</div>
+            </div>
+            <div className="little-info">
+              Person reviewing the actual completion of the Milestone
+            </div>
+          </div>
+          <div>
+            <h3>Fund Requested</h3>
+            <div>2000 xDAI</div>
+            <div className="little-info">
+              The maximum amount of DAI that can be donated to this Milestone. Based on the requested amount in fiat.
+            </div>
+          </div>
+          <div>
+            <h3>Progress</h3>
+          </div>
+          <div>
+            <h3>Date of milestone</h3>
+            <div>
+              16th March 2019
+            </div>
+            <div className="little-info">
+              This date defines DAI-fiat converstoin rate
+            </div>
+          </div>
         </div>
       </div>
     )
