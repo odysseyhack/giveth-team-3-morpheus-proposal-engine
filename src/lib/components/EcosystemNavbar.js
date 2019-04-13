@@ -2,7 +2,7 @@ import React from 'react'
 import giveth from '../assets/images/giveth-logo.svg'
 import profile from '../assets/images/profile.png'
 
-const EcosystemNavbar = ({ buttonName, actionText }) => {
+const EcosystemNavbar = () => {
   return (
     <div className="eco-main-navbar">
       <div className="giveth-logo">

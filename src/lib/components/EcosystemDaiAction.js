@@ -4,10 +4,10 @@
 import React from 'react'
 import PrimaryButton from './PrimaryButton'
 
-const EcosystemDaiAction = ({ buttonName, actionText }) => {
+const EcosystemDaiAction = ({ buttonName, actionText, showDai }) => {
   return (
     <div className="eco-dai-action">
-      <PrimaryButton name={buttonName} />
+      <PrimaryButton name={buttonName} showDai />
       <p>{actionText}</p>
     </div>
   )

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import dai from '../assets/images/dai.png'
 
-const PrimaryButton = ({ name, onClick }) => (
+const PrimaryButton = ({ name, onClick, showDai }) => (
   <button className="eco primary" onClick={onClick}>
-    <img src={dai} />
+    {showDai && <img src={dai} />}
     {name}
   </button>
 )

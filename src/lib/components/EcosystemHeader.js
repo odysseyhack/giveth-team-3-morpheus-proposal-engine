@@ -1,16 +1,16 @@
-/**
- * Created by will on 10/04/19.
- */
 import React from 'react'
 import EcosystemDaiAction from './EcosystemDaiAction'
 import EcosystemNavbar from './EcosystemNavbar'
 import Givethers from './Givethers'
 
-const EcosystemHeader = ({ title, subtitle, description }) => {
+const EcosystemHeader = ({ title, subtitle, description, image }) => {
   return (
     <div>
       <EcosystemNavbar />
-      <div className="eco-header">
+      <div
+        className="eco-header"
+        style={{ background: `url(${image})`, backgroundSize: 'cover' }}
+      >
         <div className="eco-header-content">
           <h3>{subtitle}</h3>
           <h1>{title}</h1>
@@ -21,6 +21,7 @@ const EcosystemHeader = ({ title, subtitle, description }) => {
             <EcosystemDaiAction
               buttonName="Donate xDAI"
               actionText="1510 xDAI donated"
+              showDAI
             />
             <Givethers count={488} />
           </div>
