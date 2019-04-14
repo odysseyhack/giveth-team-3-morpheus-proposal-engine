@@ -1,18 +1,17 @@
 import React from 'react'
 import dai from '../assets/images/dai.png'
-import { changeState } from '../stores/navigation'
+import { changeMilestone, changeState } from '../stores/navigation'
 import PrimaryButton from './PrimaryButton'
 
-const milestones = [
-  {
-    title: 'Milestone 1: Example of some milestone',
-    subtext: 'Campaign: Reforestation in Indonesia',
-    currentValue: 2000,
-    maxValue: 5000,
-  },
-]
+function formatNumber(number) {
+  if (number) {
+    return Number(number.toFixed(1))
+      .toLocaleString()
+      .replace('.', ',')
+  }
+}
 
-const Milestones = () => (
+const Milestones = ({ milestones }) => (
   <div className="eco-milestones">
     <div className="navbar-wrapper">
       <ul className="navbar">
@@ -30,9 +29,14 @@ const Milestones = () => (
         <td>Funding Progress</td>
         <td>Actions</td>
       </tr>
-      {milestones.map(({ title, subtext, currentValue, maxValue }) => (
+      {milestones.map(({ title, subtext, currentValue, maxValue }, idx) => (
         <>
-          <tr onClick={() => changeState('milestone')}>
+          <tr
+            onClick={() => {
+              changeState('milestone')
+              changeMilestone(idx)
+            }}
+          >
             <td>
               <p className="title">{title}</p>
               <p className="subtext">{subtext}</p>
@@ -40,13 +44,15 @@ const Milestones = () => (
             <td>
               <div className="progress-text">
                 <img src={dai} />
-                <p>{currentValue}</p>
-                <p className="grey"> / {maxValue} xDAI</p>
+                <p>{formatNumber(currentValue) || 0}</p>
+                <p className="grey"> / {formatNumber(maxValue)} xDAI</p>
               </div>
               <div className="progress-bar">
                 <div>
                   <div
-                    style={{ transform: `scaleX(${currentValue / maxValue})` }}
+                    style={{
+                      transform: `scaleX(${(currentValue || 0) / maxValue})`,
+                    }}
                   />
                 </div>
               </div>

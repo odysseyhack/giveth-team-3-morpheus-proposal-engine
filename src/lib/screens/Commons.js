@@ -6,7 +6,7 @@ import headerImage from '../assets/images/commons-header.png'
 // import mexico from '../assets/images/mexico-fires.jpg'
 import '../assets/styles/main.scss'
 import { Card, EcosystemHeader } from '../index'
-import { NavStore } from '../stores/navigation'
+import { changeCampaign, changeState, NavStore } from '../stores/navigation'
 
 export default () => {
   const { campaigns } = useStore(NavStore)
@@ -24,13 +24,20 @@ export default () => {
         <p>These Campaigns are working hard to solve causes of the Commons</p>
         <div className="cards">
           {campaigns.map(
-            ({ title, description, image, giversCount, donationsCount }) => (
+            (
+              { title, description, image, giversCount, donationsCount },
+              idx
+            ) => (
               <Card
                 title={title}
                 description={description.slice(0, 92) + '...'}
                 giversCount={giversCount}
                 donationsCount={donationsCount}
                 image={image}
+                onClick={() => {
+                  changeState('campaign')
+                  changeCampaign(idx)
+                }}
               />
             )
           )}

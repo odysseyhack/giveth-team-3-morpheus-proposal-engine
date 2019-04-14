@@ -1,20 +1,27 @@
+import { useStore } from 'laco-react'
 import React from 'react'
 import headerImage from '../assets/images/campaign-header.jpg'
 import '../assets/styles/main.scss'
 import { EcosystemHeader, Milestones } from '../index'
+import { NavStore } from '../stores/navigation'
 
-export default () => (
-  <div>
-    <EcosystemHeader
-      title="Planting seeds in South Indonesia Forests"
-      subtitle="CAMPAIGN"
-      description="This is a description... Trying to make it long hello there!"
-      image={headerImage}
-      state="campaign"
-      amountDonated="40,000"
-    />
-    <div className="milestones-wrapper">
-      <Milestones />
+export default () => {
+  const { campaigns, campaignIndex } = useStore(NavStore)
+
+  const campaign = campaigns[campaignIndex]
+  return (
+    <div>
+      <EcosystemHeader
+        title={campaign.title}
+        subtitle="CAMPAIGN"
+        description={campaign.description}
+        image={headerImage}
+        state="campaign"
+        amountDonated="40,000"
+      />
+      <div className="milestones-wrapper">
+        <Milestones milestones={campaign.milestones} />
+      </div>
     </div>
-  </div>
-)
+  )
+}
