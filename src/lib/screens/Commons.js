@@ -13,10 +13,11 @@ export default () => {
   return (
     <div>
       <EcosystemHeader
-        title="Scaling Wildlife Protection"
+        title="Masarang Foundation"
         subtitle="COMMONS"
-        description="This is a description... Trying to make it long hello there!"
+        description="“Nature conservation through collaboration with and development of the local population” - That is the mission of Masarang, our foundation in Indonesia, founded in 2001 by Dr. Eng. Willie Smits. Masarang finds solutions for the most urgent global problems of our time: deforestation, biodiversity loss, climate change, poverty and underdevelopment."
         image={headerImage}
+        amountDonated="1,560,000"
       />
       <div className="campaigns">
         <h3>Campaigns</h3>

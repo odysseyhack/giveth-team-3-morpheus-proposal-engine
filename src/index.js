@@ -12,6 +12,9 @@ const App = () => {
 
   return (
     <div>
+      <div className="wallet">
+        <div className="content" />
+      </div>
       {state === 'commons' && <Commons />}
       {state === 'campaign' && <Campaign />}
       {state === 'milestone' && <Milestone />}

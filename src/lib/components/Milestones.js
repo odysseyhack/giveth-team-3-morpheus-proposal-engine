@@ -51,7 +51,8 @@ const Milestones = () => (
                 </div>
               </div>
             </td>
-            <td>
+            <td className="actions">
+              <PrimaryButton name="Nominate" />
               <PrimaryButton name="Donate xDAI" showDai />
             </td>
           </tr>

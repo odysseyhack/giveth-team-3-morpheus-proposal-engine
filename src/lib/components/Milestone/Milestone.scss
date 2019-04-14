@@ -34,7 +34,8 @@
 }
 
 .milestone-header {
-  background: linear-gradient(270deg, #8e2de2 0%, #4a00e0 100%);
+  background: rgba(0, 0, 0, 0) url('/static/media/campaign-header.e43734ac.jpg')
+    repeat scroll 0% 0% / cover;
   flex-shrink: 1;
   color: #ffffff;
   padding: 70px 172px;
@@ -47,11 +48,15 @@
 
     color: #ffffff;
   }
+
+  .description {
+    width: 700px;
+  }
 }
 
 .milestone-body {
   padding: 47px 172px;
-  color: #3A6467;
+  color: #3a6467;
 }
 
 .milestone-info {
@@ -61,6 +66,17 @@
   box-sizing: border-box;
   border-radius: 4px;
   margin-bottom: 47px;
+
+  .funds-requested {
+    background: -webkit-linear-gradient(270deg, #1bdd9d 0%, #2cc9cc 100%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    margin-bottom: 1rem;
+  }
 
   .column > *:not(:last-child) {
     &::after {
@@ -97,6 +113,10 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+
+    & > img {
+      margin-right: 1rem;
+    }
 
     .pic {
       background: blue;

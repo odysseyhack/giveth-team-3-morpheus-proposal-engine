@@ -19,7 +19,7 @@ const Card = ({ title, description, giversCount, donationsCount, image }) => {
         </div>
         <div className="field">
           <img src={donations} />
-          {donationsCount} Donations
+          {donationsCount} xDAI
         </div>
       </div>
     </div>

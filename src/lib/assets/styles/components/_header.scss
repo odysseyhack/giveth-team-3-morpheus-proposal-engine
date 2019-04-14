@@ -5,9 +5,18 @@
   .donate-field {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-top: 2rem;
-    & > button {
+
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+    & > div > button {
       margin-right: 2rem;
+    }
+    div:nth-child(2) {
+      margin-right: 12rem;
     }
   }
 

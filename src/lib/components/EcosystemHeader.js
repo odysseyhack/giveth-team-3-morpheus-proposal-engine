@@ -1,9 +1,17 @@
 import React from 'react'
+import griff from '../assets/images/griff.jpg'
 import EcosystemNavbar from './EcosystemNavbar'
 import Givethers from './Givethers'
 import PrimaryButton from './PrimaryButton'
 
-const EcosystemHeader = ({ title, subtitle, description, image }) => {
+const EcosystemHeader = ({
+  title,
+  subtitle,
+  description,
+  image,
+  state,
+  amountDonated,
+}) => {
   return (
     <div>
       <EcosystemNavbar />
@@ -18,10 +26,18 @@ const EcosystemHeader = ({ title, subtitle, description, image }) => {
             <p>{description}</p>
           </div>
           <div className="donate-field">
-            <PrimaryButton name="Donate xDAI" showDai />
-            <Givethers count={488} />
+            <div>
+              <PrimaryButton name="Donate xDAI" showDai />
+              <Givethers count={488} />
+            </div>
+            {state === 'campaign' && (
+              <div>
+                Griff Green is the reviewer
+                <img src={griff} style={{ marginLeft: '1rem' }} />
+              </div>
+            )}
           </div>
-          <p className="how-much">1510 xDAI donated</p>
+          <p className="how-much">{amountDonated} xDAI donated</p>
         </div>
         {/* <div className="eco-nav-bar">
           <button selected={true}>ABOUT CAMPAIGN</button>

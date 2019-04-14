@@ -10,6 +10,8 @@ export default () => (
       subtitle="CAMPAIGN"
       description="This is a description... Trying to make it long hello there!"
       image={headerImage}
+      state="campaign"
+      amountDonated="40,000"
     />
     <div className="milestones-wrapper">
       <Milestones />
