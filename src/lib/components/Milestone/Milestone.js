@@ -4,6 +4,30 @@ import PrimaryButton from '../PrimaryButton'
 import './Milestone.scss'
 
 export class Milestone extends React.Component {
+  state = {
+    name: 'Plant 100 trees',
+    description: 'There\'s a patch of sparse forest near my village and I plan to organize a neighbour initiative to plant 100 trees over one weekend.',
+    campaignName: 'Planting seeds in South Indonesia Forests',
+    askedAmount: '2000',
+    askedCurrency: 'xDAI',
+    donatedAmount: '500',
+    momentumAllocated: '700',
+    isDone: false,
+    isValidated: false
+  }
+
+  isFunded () {
+    return (this.getMomentumRequired() - this.state.momentumAllocated) <= 0;
+  }
+
+  getMomentumRequired () {
+    return this.getTotalMomentumRequired() - (this.state.donatedAmount * 10);
+  }
+
+  getTotalMomentumRequired () {
+    return (this.state.askedAmount * 10);
+  }
+
   render() {
     return (
       <div className="milestone">
