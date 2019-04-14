@@ -10,7 +10,7 @@
   margin-bottom: 1rem;
   margin-top: 2rem;
 
-  button:first-child {
+  button:not(last-child) {
     margin-right: 2rem;
   }
 }
