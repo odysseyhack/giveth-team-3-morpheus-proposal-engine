@@ -9,9 +9,10 @@ export class Milestone extends React.Component {
     description: 'There\'s a patch of sparse forest near my village and I plan to organize a neighbour initiative to plant 100 trees over one weekend.',
     campaignName: 'Planting seeds in South Indonesia Forests',
     askedAmount: '2000',
-    askedCurrency: 'xDAI',
-    donatedAmount: '500',
-    momentumAllocated: '700',
+    askedSymbol: 'xDAI',
+    donatedAmount: '0',
+    momentumAllocated: '0',
+    momentumSymbol: 'VIC',
     isDone: false,
     isValidated: false
   }
@@ -26,6 +27,14 @@ export class Milestone extends React.Component {
 
   getTotalMomentumRequired () {
     return (this.state.askedAmount * 10);
+  }
+
+  doBelieve100 () {
+    this.setState({momentumAllocated: this.state.momentumAllocated + 100})
+  }
+
+  doDonate10 () {
+    this.setState({donatedAmount: this.state.donatedAmount + 10})
   }
 
   render() {
@@ -63,7 +72,7 @@ export class MilestoneHeader extends React.Component {
             <h1>{this.milestone.state.name}</h1>
             <p>{this.milestone.state.description}</p>
             <MilestoneActionButtons milestone={this.milestone}/>
-            <div>Needs a total allocation of +{this.milestone.getTotalMomentumRequired()} VIC tokens</div>
+            <div>Needs a total allocation of +{this.milestone.getTotalMomentumRequired()} {this.milestone.state.momentumSymbol} tokens</div>
           </div>
         </div>
       </div>
@@ -85,39 +94,21 @@ class MilestoneActionButtons extends React.Component {
       <div>
         {!this.milestone.isFunded() && this.state.display === '' && (
           <div class="milestone-header-buttons">
+            {this.milestone.state.momentumAllocated == 0 && (
+              <PrimaryButton
+                name="Nominate for commons funding"
+                onClick={() => this.milestone.doBelieve100()}
+              />
+            )}
+            {this.milestone.state.momentumAllocated > 0 && (
+              <PrimaryButton
+                name={"Believe 100 " + this.milestone.state.momentumSymbol}
+                onClick={() => this.milestone.doBelieve100()}
+              />
+            )}
             <PrimaryButton
-              name="Nominate for commons funding"
-              onClick={() => this.setState({ display: 'nominate' })}
-            />
-            <PrimaryButton
-              name="Donate"
-              onClick={() => this.setState({ display: 'donate' })}
-            />
-          </div>
-        )}
-        {this.state.display === 'nominate' && (
-          <div className="nominate-field">
-            <input
-              placeholder="Enter staking amount in VIC"
-              onChange={e => this.setState({ fieldValue: e.target.value })}
-            />
-            <PrimaryButton name="Nominate milestone" />
-            <PrimaryButton
-              name="Cancel"
-              onClick={() => this.setState({ display: '' })}
-            />
-          </div>
-        )}
-        {this.state.display === 'donate' && (
-          <div className="nominate-field">
-            <input
-              placeholder="Enter amount in xDAI"
-              onChange={e => this.setState({ fieldValue: e.target.value })}
-            />
-            <PrimaryButton name="Donate to milestone" />
-            <PrimaryButton
-              name="Cancel"
-              onClick={() => this.setState({ display: '' })}
+              name={"Donate 10 " + this.milestone.state.askedSymbol}
+              onClick={() => this.milestone.doDonate10()}
             />
           </div>
         )}
@@ -198,7 +189,7 @@ export class MilestoneInfo extends React.Component {
           </div>
           <div>
             <h3>Fund Requested</h3>
-            <div>{this.milestone.state.askedAmount} {this.milestone.state.askedCurrency}</div>
+            <div>{this.milestone.state.askedAmount} {this.milestone.state.askedSymbol}</div>
             <div className="little-info">
               The maximum amount of DAI that can be donated to this Milestone. Based on the requested amount in fiat.
             </div>
