@@ -1,2 +1,2 @@
-import { MilestoneHeader, MilestoneInfo } from './Milestone'
-export { MilestoneHeader, MilestoneInfo }
+import { Milestone } from './Milestone'
+export { Milestone }

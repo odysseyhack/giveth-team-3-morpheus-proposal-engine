@@ -20,6 +20,10 @@ button {
       background-color: palette(secondary);
     }
 
+    &.disabled {
+      background: palette(disabled);
+    }
+
     &:focus {
       outline: none;
     }

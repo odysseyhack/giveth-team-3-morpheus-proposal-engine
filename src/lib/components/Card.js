@@ -1,11 +1,17 @@
 import React from 'react'
 import donations from '../assets/images/donations.svg'
 import givers from '../assets/images/givers.svg'
-import { changeState } from '../stores/navigation'
 
-const Card = ({ title, description, giversCount, donationsCount, image }) => {
+const Card = ({
+  title,
+  description,
+  giversCount,
+  donationsCount,
+  image,
+  onClick,
+}) => {
   return (
-    <div className="eco-card" onClick={() => changeState('campaign')}>
+    <div className="eco-card" onClick={onClick}>
       <div style={{ background: `url(${image})`, backgroundSize: 'cover' }}>
         <div>
           <h4>{title}</h4>
@@ -19,7 +25,7 @@ const Card = ({ title, description, giversCount, donationsCount, image }) => {
         </div>
         <div className="field">
           <img src={donations} />
-          {donationsCount} Donations
+          {donationsCount} xDAI
         </div>
       </div>
     </div>

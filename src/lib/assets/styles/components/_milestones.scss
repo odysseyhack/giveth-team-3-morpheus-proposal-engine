@@ -6,6 +6,12 @@
 }
 
 .eco-milestones {
+  .actions {
+    & > button {
+      display: inline-block;
+      margin-right: 2rem;
+    }
+  }
   .navbar-wrapper {
     display: flex;
     align-items: center;

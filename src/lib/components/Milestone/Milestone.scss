@@ -5,12 +5,22 @@
   height: 100%;
 }
 
+.reject-button {
+  color: white;
+  padding: 10px 20px;
+  background: linear-gradient(270deg, #dd1b1b 0%, #e1164c 100%);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .milestone-header-buttons {
   display: flex;
   margin-bottom: 1rem;
   margin-top: 2rem;
+  align-items: center;
 
-  button:first-child {
+  button:not(last-child) {
     margin-right: 2rem;
   }
 }
@@ -33,11 +43,25 @@
   }
 }
 
+.funded {
+  background: -webkit-linear-gradient(270deg, #1bdd9d 0%, #2cc9cc 100%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  font-weight: 500;
+}
+
 .milestone-header {
-  background: linear-gradient(270deg, #8e2de2 0%, #4a00e0 100%);
+  background: rgba(0, 0, 0, 0) url('/static/media/campaign-header.e43734ac.jpg')
+    repeat scroll 0% 0% / cover;
   flex-shrink: 1;
   color: #ffffff;
   padding: 70px 172px;
+
+  a {
+    color: #2cc9cc;
+  }
 
   h1 {
     font-style: normal;
@@ -47,19 +71,35 @@
 
     color: #ffffff;
   }
+
+  .description {
+    width: 700px;
+  }
 }
 
 .milestone-body {
   padding: 47px 172px;
+  color: #3a6467;
 }
 
 .milestone-info {
-  color: #3a6467;
   display: flex;
   background: #ffffff;
   border: 1px solid #e3e3e3;
   box-sizing: border-box;
   border-radius: 4px;
+  margin-bottom: 47px;
+
+  .funds-requested {
+    background: -webkit-linear-gradient(270deg, #1bdd9d 0%, #2cc9cc 100%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    margin-bottom: 1rem;
+  }
 
   .column > *:not(:last-child) {
     &::after {
@@ -96,6 +136,10 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+
+    & > img {
+      margin-right: 1rem;
+    }
 
     .pic {
       background: blue;
