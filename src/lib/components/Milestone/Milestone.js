@@ -1,4 +1,7 @@
 import React from 'react'
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
 import EcosystemNavbar from '../EcosystemNavbar'
 import PrimaryButton from '../PrimaryButton'
 import './Milestone.scss'
@@ -8,33 +11,43 @@ export class Milestone extends React.Component {
     name: 'Plant 100 trees',
     description: 'There\'s a patch of sparse forest near my village and I plan to organize a neighbour initiative to plant 100 trees over one weekend.',
     campaignName: 'Planting seeds in South Indonesia Forests',
-    askedAmount: '2000',
-    askedSymbol: 'xDAI',
-    donatedAmount: '0',
-    momentumAllocated: '0',
-    momentumSymbol: 'VIC',
+    amountRequested: '1500',
+    amountSymbol: 'xDAI',
+    amountDonated: 0,
+    momentumAvailable: 7,
+    momentumAllocated: 0,
+    momentumSymbol: '💪',
     isDone: false,
     isValidated: false
   }
 
   isFunded () {
-    return (this.getMomentumRequired() - this.state.momentumAllocated) <= 0;
+    return (this.state.amountDonated + this.getAmountPledged()) >= this.state.amountRequested
+  }
+
+  getAmountPledged () {
+    return this.momentumToAmount(this.state.momentumAllocated);
   }
 
   getMomentumRequired () {
-    return this.getTotalMomentumRequired() - (this.state.donatedAmount * 10);
+    return this.getTotalMomentumRequired() - (this.state.amountDonated * 10);
   }
 
   getTotalMomentumRequired () {
-    return (this.state.askedAmount * 10);
+    return (this.state.amountRequested * 10);
   }
 
-  doBelieve100 () {
-    this.setState({momentumAllocated: this.state.momentumAllocated + 100})
+  momentumToAmount (momentum) {
+    return momentum * 177
+  }
+
+  doBond () {
+    this.setState({momentumAllocated: this.state.momentumAllocated + 1})
+    this.setState({momentumAvailable: this.state.momentumAvailable - 1})
   }
 
   doDonate10 () {
-    this.setState({donatedAmount: this.state.donatedAmount + 10})
+    this.setState({amountDonated: this.state.amountDonated + 10})
   }
 
   render() {
@@ -71,7 +84,6 @@ export class MilestoneHeader extends React.Component {
             <h1>{this.milestone.state.name}</h1>
             <p>{this.milestone.state.description}</p>
             <MilestoneActionButtons milestone={this.milestone}/>
-            <div>Needs a total allocation of +{this.milestone.getTotalMomentumRequired()} {this.milestone.state.momentumSymbol} tokens</div>
           </div>
         </div>
       </div>
@@ -93,22 +105,29 @@ class MilestoneActionButtons extends React.Component {
       <div>
         {!this.milestone.isFunded() && this.state.display === '' && (
           <div class="milestone-header-buttons">
+            <PrimaryButton
+              name={"Donate 10 " + this.milestone.state.amountSymbol}
+              onClick={() => this.milestone.doDonate10()}
+            />
             {this.milestone.state.momentumAllocated == 0 && (
               <PrimaryButton
                 name="Nominate for commons funding"
-                onClick={() => this.milestone.doBelieve100()}
+                onClick={() => this.milestone.doBond()}
               />
             )}
-            {this.milestone.state.momentumAllocated > 0 && (
+            {this.milestone.state.momentumAllocated > 0 && this.milestone.state.momentumAvailable > 0 && (
               <PrimaryButton
-                name={"Believe 100 " + this.milestone.state.momentumSymbol}
-                onClick={() => this.milestone.doBelieve100()}
+                name={"Flex " + this.milestone.state.momentumSymbol}
+                onClick={() => this.milestone.doBond()}
               />
             )}
-            <PrimaryButton
-              name={"Donate 10 " + this.milestone.state.askedSymbol}
-              onClick={() => this.milestone.doDonate10()}
-            />
+            {this.milestone.state.momentumAllocated > 0 && this.milestone.state.momentumAvailable <= 0 && (
+              <PrimaryButton
+                name={"Flex " + this.milestone.state.momentumSymbol}
+                classNames="disabled"
+              />
+            )}
+            of {this.milestone.state.momentumAvailable} {this.milestone.state.momentumSymbol} available
           </div>
         )}
       </div>
@@ -188,13 +207,25 @@ export class MilestoneInfo extends React.Component {
           </div>
           <div>
             <h3>Fund Requested</h3>
-            <div>{this.milestone.state.askedAmount} {this.milestone.state.askedSymbol}</div>
+            <div>{this.milestone.state.amountRequested} {this.milestone.state.amountSymbol}</div>
             <div className="little-info">
               The maximum amount of DAI that can be donated to this Milestone. Based on the requested amount in fiat.
             </div>
           </div>
           <div>
             <h3>Progress</h3>
+            <div>
+              Donated {' '}
+              {this.milestone.state.amountDonated} {this.milestone.state.amountSymbol} / {' '}
+              {this.milestone.state.amountRequested} {this.milestone.state.amountSymbol}
+            </div>
+            <Slider value={this.milestone.state.amountDonated} max={this.milestone.state.amountRequested}/>
+            <div>
+              Pledged {' '}
+              {this.milestone.getAmountPledged()} {this.milestone.state.amountSymbol} / {' '}
+              {this.milestone.state.amountRequested} {this.milestone.state.amountSymbol} via {this.milestone.state.momentumSymbol}
+            </div>
+            <Range value={[-this.milestone.getAmountPledged(), 0]} min={-this.milestone.state.amountRequested} max="0"/>
           </div>
           <div>
             <h3>Date of milestone</h3>
