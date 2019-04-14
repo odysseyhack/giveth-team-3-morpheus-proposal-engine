@@ -31,10 +31,10 @@ export class Milestone extends React.Component {
   render() {
     return (
       <div className="milestone">
-        <MilestoneHeader />
+        <MilestoneHeader milestone={this} />
         <div className="milestone-body">
-          <MilestoneInfo />
-          <div>donations</div>
+          <MilestoneInfo milestone={this} />
+          <MilestoneDonations />
         </div>
       </div>
     )
@@ -42,10 +42,14 @@ export class Milestone extends React.Component {
 }
 
 export class MilestoneHeader extends React.Component {
-  state = {
-    state: '',
-    fieldValue: '',
+  constructor (props) {
+    super(props)
+    this.milestone = props.milestone
+    this.state = {
+      display: ''
+    }
   }
+
   render() {
     const { state } = this.state
     return (
@@ -53,53 +57,13 @@ export class MilestoneHeader extends React.Component {
         <EcosystemNavbar />
         <div className="milestone-header">
           <div>
-            <div>Campaign: Planting seeds in South Indonesia Forests</div>
-            <h1>Plant 100 trees</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            {state === '' && (
-              <div class="milestone-header-buttons">
-                <PrimaryButton
-                  name="Nominate for commons funding"
-                  onClick={() => this.setState({ state: 'nominate' })}
-                />
-                <PrimaryButton
-                  name="Donate"
-                  onClick={() => this.setState({ state: 'donate' })}
-                />
-              </div>
-            )}
-            {state === 'nominate' && (
-              <div className="nominate-field">
-                <input
-                  placeholder="Enter staking amount in VIC"
-                  onChange={e => this.setState({ fieldValue: e.target.value })}
-                />
-                <PrimaryButton name="Nominate milestone" />
-                <PrimaryButton
-                  name="Cancel"
-                  onClick={() => this.setState({ state: '' })}
-                />
-              </div>
-            )}
-            {state === 'donate' && (
-              <div className="nominate-field">
-                <input
-                  placeholder="Enter amount in xDAI"
-                  onChange={e => this.setState({ fieldValue: e.target.value })}
-                />
-                <PrimaryButton name="Donate to milestone" />
-                <PrimaryButton
-                  name="Cancel"
-                  onClick={() => this.setState({ state: '' })}
-                />
-              </div>
-            )}
-            <div>Needs staking 100+ VIC tokens</div>
+            <div>
+              Campaign: {this.milestone.state.campaignName}
+            </div>
+            <h1>{this.milestone.state.name}</h1>
+            <p>{this.milestone.state.description}</p>
+            <MilestoneActionButtons milestone={this.milestone}/>
+            <div>Needs a total allocation of +{this.milestone.getTotalMomentumRequired()} VIC tokens</div>
           </div>
         </div>
       </div>
@@ -107,7 +71,90 @@ export class MilestoneHeader extends React.Component {
   }
 }
 
+class MilestoneActionButtons extends React.Component {
+  constructor (props) {
+    super(props)
+    this.milestone = props.milestone
+    this.state = {
+      display: ''
+    }
+  }
+
+  renderNonFunded () {
+    return (
+      <div>
+        {!this.milestone.isFunded() && this.state.display === '' && (
+          <div class="milestone-header-buttons">
+            <PrimaryButton
+              name="Nominate for commons funding"
+              onClick={() => this.setState({ display: 'nominate' })}
+            />
+            <PrimaryButton
+              name="Donate"
+              onClick={() => this.setState({ display: 'donate' })}
+            />
+          </div>
+        )}
+        {this.state.display === 'nominate' && (
+          <div className="nominate-field">
+            <input
+              placeholder="Enter staking amount in VIC"
+              onChange={e => this.setState({ fieldValue: e.target.value })}
+            />
+            <PrimaryButton name="Nominate milestone" />
+            <PrimaryButton
+              name="Cancel"
+              onClick={() => this.setState({ display: '' })}
+            />
+          </div>
+        )}
+        {this.state.display === 'donate' && (
+          <div className="nominate-field">
+            <input
+              placeholder="Enter amount in xDAI"
+              onChange={e => this.setState({ fieldValue: e.target.value })}
+            />
+            <PrimaryButton name="Donate to milestone" />
+            <PrimaryButton
+              name="Cancel"
+              onClick={() => this.setState({ display: '' })}
+            />
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  renderFunded () {
+    return (
+      <div className="milestone-header-buttons">
+        {!this.milestone.state.isDone && (
+          <PrimaryButton name="Mark complete"
+            onClick={() => this.milestone.setState({ isDone: true })}/>
+        )}
+        {this.milestone.state.isDone && !this.milestone.state.isValidated && (
+          <PrimaryButton name="Validate"
+            onClick={() => this.milestone.setState({ isValidated: true })}/>
+        )}
+        {this.milestone.state.isDone && this.milestone.state.isValidated && (
+          <PrimaryButton name="Redeem"
+            onClick={() => alert("This would open the UI to collect donations and token.")}/>
+        )}
+      </div>
+    )
+  }
+
+  render () {
+    return this.milestone.isFunded()? this.renderFunded() : this.renderNonFunded()
+  }
+}
+
 export class MilestoneInfo extends React.Component {
+  constructor (props) {
+    super(props)
+    this.milestone = props.milestone
+  }
+
   render() {
     return (
       <div className="milestone-info">
@@ -151,7 +198,7 @@ export class MilestoneInfo extends React.Component {
           </div>
           <div>
             <h3>Fund Requested</h3>
-            <div>2000 xDAI</div>
+            <div>{this.milestone.state.askedAmount} {this.milestone.state.askedCurrency}</div>
             <div className="little-info">
               The maximum amount of DAI that can be donated to this Milestone. Based on the requested amount in fiat.
             </div>
