@@ -111,24 +111,3 @@
     font-size: 10px;
   }
 }
-
-.milestone-donations {
-  .table {
-    display: table;
-    width: 100%;
-
-    > div:first-child {
-      display: table-row;
-      font-weight: bold;
-      border-bottom: 1px solid black;
-    }
-
-    .row {
-      display: table-row;
-    }
-
-    .cell {
-      display: table-cell;
-    }
-  }
-}

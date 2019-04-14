@@ -43,7 +43,6 @@ export class Milestone extends React.Component {
         <MilestoneHeader milestone={this} />
         <div className="milestone-body">
           <MilestoneInfo milestone={this} />
-          <MilestoneDonations />
         </div>
       </div>
     )
@@ -205,46 +204,6 @@ export class MilestoneInfo extends React.Component {
             <div className="little-info">
               This date defines DAI-fiat converstoin rate
             </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
-
-export class MilestoneDonations extends React.Component {
-  render () {
-    return (
-      <div className="milestone-donations">
-        <h2>Donations</h2>
-        <div className="table">
-          <div className="row">
-            <div className="cell">Date</div>
-            <div className="cell">Status</div>
-            <div className="cell">Amount</div>
-            <div className="cell">Name</div>
-            <div className="cell">Address</div>
-          </div>
-          <div className="row">
-            <div className="cell">08/07/2018</div>
-            <div className="cell">Ready for delegation</div>
-            <div className="cell">700.000</div>
-            <div className="cell">María Gomez</div>
-            <div className="cell">0xabc</div>
-          </div>
-          <div className="row">
-            <div className="cell">08/07/2018</div>
-            <div className="cell">Ready for delegation</div>
-            <div className="cell">700.000</div>
-            <div className="cell">María Gomez</div>
-            <div className="cell">0xabc</div>
-          </div>
-          <div className="row">
-            <div className="cell">08/07/2018</div>
-            <div className="cell">Ready for delegation</div>
-            <div className="cell">700.000</div>
-            <div className="cell">María Gomez</div>
-            <div className="cell">0xabc</div>
           </div>
         </div>
       </div>
